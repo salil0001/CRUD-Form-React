@@ -7,11 +7,12 @@ export default class Form extends Component {
             { id: 2, name: "Anmol" },
 
         ],
+        name: ""
 
     }
     handleChange = (e) => {
         this.setState({
-            [e.target.name]: e.target.value
+            name: e.target.value
         })
 
 
@@ -23,18 +24,32 @@ export default class Form extends Component {
             id: Math.random()
 
         }
-        console.log(this.state.names)
+        let updateName = [...this.state.names, abc]
         this.setState({
-            names: [...this.state.names, abc]
+            names: updateName,
+            name: ""
         })
     }
-    handleDelete=(id)=>
-    {
-        let names = this.state.names.filter(name=>{
-                return name.id !==id
+    handleDelete = (id) => {
+        let names = this.state.names.filter(name => {
+            return name.id !== id
         })
         this.setState({
-            names:names
+            names: names
+        })
+
+    }
+    handleEdit = (id) => {
+        let names = this.state.names.filter(name => {
+            return name.id !== id
+        })
+        let namesList = this.state.names.find(name => {
+            return name.id === id
+        })
+        this.setState({
+            names:names,
+            name:namesList.name,
+            id:id
         })
 
     }
@@ -45,7 +60,8 @@ export default class Form extends Component {
             return (
                 <div key={name.id}>
                     <div>{name.name}</div>
-                    <button onClick={()=>this.handleDelete(name.id)}>Delete</button>
+                    <button onClick={() => this.handleDelete(name.id)}>Delete</button>
+                
                 </div>
             )
         })
@@ -55,7 +71,7 @@ export default class Form extends Component {
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
-                        <input type="text" required className="form-control" name="name" aria-describedby="emailHelp" placeholder="Enter email" onChange={this.handleChange} />
+                        <input type="text" required className="form-control" value={this.state.name} aria-describedby="emailHelp" placeholder="Enter email" onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary">Submit</button>
