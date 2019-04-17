@@ -39,19 +39,13 @@ export default class Form extends Component {
         })
 
     }
-    handleEdit = (id) => {
-        let names = this.state.names.filter(name => {
-            return name.id !== id
-        })
-        let namesList = this.state.names.find(name => {
-            return name.id === id
-        })
-        this.setState({
-            names:names,
-            name:namesList.name,
-            id:id
-        })
-
+    handleEdit = (name,id) => {
+     let name1 = this.state.names.findIndex((namess => namess.id === id))
+    let abc=this.state.names;
+        abc[name1].name=name
+    this.setState({
+         names:abc
+     })    
     }
     render() {
 
@@ -61,7 +55,8 @@ export default class Form extends Component {
                 <div key={name.id}>
                     <div>{name.name}</div>
                     <button onClick={() => this.handleDelete(name.id)}>Delete</button>
-                
+                    <button>Edit <FormEdit handleEdit={this.handleEdit} name={name.name} id={name.id} /></button>
+
                 </div>
             )
         })
@@ -82,6 +77,40 @@ export default class Form extends Component {
 
             </div>
 
+        )
+    }
+}
+
+class FormEdit extends Component {
+    state = {
+        name: this.props.name,
+        id:this.props.id
+    }
+    handleEdit = (e) => {
+        e.preventDefault();
+      //  console.log(this.state.name);
+        this.props.handleEdit(this.state.name,this.state.id);
+    }
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+
+    }
+    render() {
+        return (
+            <div>
+                <form onSubmit={this.handleEdit}>
+                    <div className="form-group">
+                        <input type="text" required className="form-control" name="name" 
+                        value={this.state.name} aria-describedby="emailHelp" 
+                        onChange={this.handleChange} />
+                    </div>
+                    <div className="form-group">
+                        <button className="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
         )
     }
 }
