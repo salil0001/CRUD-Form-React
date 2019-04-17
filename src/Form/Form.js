@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export default class Form extends Component {
     state = {
         names: [
-            { id: 1, name: "Salil" },
-            { id: 2, name: "Anmol" },
+            { id: 1, name: "Salil", button: false },
+            { id: 2, name: "Anmol", button: false },
 
         ],
         name: ""
@@ -14,8 +14,6 @@ export default class Form extends Component {
         this.setState({
             name: e.target.value
         })
-
-
     }
     handleSubmit = (e) => {
         e.preventDefault();
@@ -39,13 +37,27 @@ export default class Form extends Component {
         })
 
     }
-    handleEdit = (name,id) => {
-     let name1 = this.state.names.findIndex((namess => namess.id === id))
-    let abc=this.state.names;
-        abc[name1].name=name
-    this.setState({
-         names:abc
-     })    
+    handleEdit = (name, id) => {
+        let nameIndex = this.state.names.findIndex((names => names.id === id))
+        let abc = this.state.names;
+        abc[nameIndex].name = name
+
+
+        this.setState({
+            names: abc
+        })
+    }
+    ShowHideEditForm=(id)=>
+    {
+        let nameIndex = this.state.names.findIndex((names => names.id === id))
+        let abc = this.state.names;
+        abc[nameIndex].button = true
+
+        this.setState({
+            names: abc
+        })
+
+
     }
     render() {
 
@@ -55,8 +67,7 @@ export default class Form extends Component {
                 <div key={name.id}>
                     <div>{name.name}</div>
                     <button onClick={() => this.handleDelete(name.id)}>Delete</button>
-                    <button>Edit <FormEdit handleEdit={this.handleEdit} name={name.name} id={name.id} /></button>
-
+                    <button onClick={() => this.ShowHideEditForm(name.id)}>Edit {name.button?<FormEdit handleEdit={this.handleEdit} name={name.name} id={name.id} />:""}</button>
                 </div>
             )
         })
@@ -84,12 +95,12 @@ export default class Form extends Component {
 class FormEdit extends Component {
     state = {
         name: this.props.name,
-        id:this.props.id
+        id: this.props.id
     }
     handleEdit = (e) => {
         e.preventDefault();
-      //  console.log(this.state.name);
-        this.props.handleEdit(this.state.name,this.state.id);
+        //  console.log(this.state.name);
+        this.props.handleEdit(this.state.name, this.state.id);
     }
     handleChange = (e) => {
         this.setState({
@@ -102,9 +113,9 @@ class FormEdit extends Component {
             <div>
                 <form onSubmit={this.handleEdit}>
                     <div className="form-group">
-                        <input type="text" required className="form-control" name="name" 
-                        value={this.state.name} aria-describedby="emailHelp" 
-                        onChange={this.handleChange} />
+                        <input type="text" required className="form-control" name="name"
+                            value={this.state.name} aria-describedby="emailHelp"
+                            onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
                         <button className="btn btn-primary">Submit</button>
