@@ -123,7 +123,7 @@ class FormEdit extends Component {
                             onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary">Submit</button>
+                        <button className="btn btn-primary">Edit</button>
                     </div>
                 </form>
             </div>
