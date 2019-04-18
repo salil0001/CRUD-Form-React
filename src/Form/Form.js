@@ -5,8 +5,7 @@ export default class Form extends Component {
         names: [
             { id: 1, name: "Salil", button: false },
             { id: 2, name: "Anmol", button: false },
-
-        ],
+         ],
         name: ""
 
     }
@@ -69,7 +68,7 @@ export default class Form extends Component {
                     <button onClick={() => this.handleDelete(name.id)}>Delete</button>
                     <button onClick={() => this.ShowHideEditForm(name.id)}>Edit </button>
 
-                    <div className="col-md-6 col-sm-12 col-lg-6">
+                    <div className="col-md-6 col-sm-12 col-lg-6 p-2">
 
                         {name.button ? <FormEdit handleEdit={this.handleEdit} name={name.name} id={name.id} /> : ""}
                     </div>
