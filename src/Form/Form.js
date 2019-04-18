@@ -48,7 +48,7 @@ export default class Form extends Component {
     ShowHideEditForm = (id) => {
         let nameIndex = this.state.names.findIndex((names => names.id === id))
         let abc = this.state.names;
-        abc[nameIndex].button = true
+        abc[nameIndex].button = !abc[nameIndex].button
 
         this.setState({
             names: abc
