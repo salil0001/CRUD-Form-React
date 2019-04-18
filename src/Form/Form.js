@@ -5,9 +5,8 @@ export default class Form extends Component {
         names: [
             { id: 1, name: "Salil", button: false },
             { id: 2, name: "Anmol", button: false },
-         ],
+        ],
         name: ""
-
     }
     handleChange = (e) => {
         this.setState({
@@ -42,7 +41,6 @@ export default class Form extends Component {
         abc[nameIndex].name = name
         abc[nameIndex].button = false
 
-
         this.setState({
             names: abc
         })
@@ -55,18 +53,18 @@ export default class Form extends Component {
         this.setState({
             names: abc
         })
-
-
     }
-    render() {
 
+
+
+    render() {
         const { names } = this.state;
         const nameList = names.map(name => {
             return (
                 <div key={name.id}>
                     <div>{name.name}</div>
-                    <button onClick={() => this.handleDelete(name.id)}>Delete</button>
-                    <button onClick={() => this.ShowHideEditForm(name.id)}>Edit </button>
+                    <button className="btn btn-danger m-1" onClick={() => this.handleDelete(name.id)}>Delete</button>
+                    <button className="btn btn-info" onClick={() => this.ShowHideEditForm(name.id)}>Edit </button>
 
                     <div className="col-md-6 col-sm-12 col-lg-6 p-2">
 
@@ -78,7 +76,7 @@ export default class Form extends Component {
         })
 
         return (
-            <div className="col-md-6  offset-md-3 col-sm-12">
+            <div className="col-md-6  offset-md-3 col-sm-12 p-2">
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Enter Name</label>
@@ -115,18 +113,18 @@ class FormEdit extends Component {
     }
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleEdit}>
-                    <div className="form-group">
-                        <input type="text" required className="form-control" name="name"
-                            value={this.state.name} aria-describedby="emailHelp"
-                            onChange={this.handleChange} />
-                    </div>
-                    <div className="form-group">
-                        <button className="btn btn-primary">Edit</button>
-                    </div>
-                </form>
-            </div>
+
+            <form onSubmit={this.handleEdit}>
+                <div className="form-group">
+                    <input type="text" required className="form-control" name="name"
+                        value={this.state.name} aria-describedby="emailHelp"
+                        onChange={this.handleChange} />
+                </div>
+                <div className="form-group">
+                    <button className="btn btn-primary">Edit</button>
+                </div>
+            </form>
+
         )
     }
 }
