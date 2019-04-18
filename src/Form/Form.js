@@ -68,7 +68,7 @@ export default class Form extends Component {
                     <div>{name.name}</div>
                     <button onClick={() => this.handleDelete(name.id)}>Delete</button>
                     <button onClick={() => this.ShowHideEditForm(name.id)}>Edit </button>
-                    
+
                     <div className="col-md-6 col-sm-12 col-lg-6">
 
                         {name.button ? <FormEdit handleEdit={this.handleEdit} name={name.name} id={name.id} /> : ""}
@@ -79,7 +79,7 @@ export default class Form extends Component {
         })
 
         return (
-            <div className="col-md-6  offset-3">
+            <div className="col-md-6  offset-md-3 col-sm-12">
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
                         <label htmlFor="exampleInputEmail1">Email address</label>
