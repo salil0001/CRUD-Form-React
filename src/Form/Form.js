@@ -48,8 +48,7 @@ export default class Form extends Component {
             names: abc
         })
     }
-    ShowHideEditForm=(id)=>
-    {
+    ShowHideEditForm = (id) => {
         let nameIndex = this.state.names.findIndex((names => names.id === id))
         let abc = this.state.names;
         abc[nameIndex].button = true
@@ -69,10 +68,12 @@ export default class Form extends Component {
                     <div>{name.name}</div>
                     <button onClick={() => this.handleDelete(name.id)}>Delete</button>
                     <button onClick={() => this.ShowHideEditForm(name.id)}>Edit </button>
-               <div>
-               {name.button?<FormEdit handleEdit={this.handleEdit} name={name.name} id={name.id} />:""}
-               </div>
-               
+                    
+                    <div className="col-md-6 col-sm-12 col-lg-6">
+
+                        {name.button ? <FormEdit handleEdit={this.handleEdit} name={name.name} id={name.id} /> : ""}
+                    </div>
+
                 </div>
             )
         })
