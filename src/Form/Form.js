@@ -82,7 +82,7 @@ export default class Form extends Component {
             <div className="col-md-6  offset-md-3 col-sm-12">
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group">
-                        <label htmlFor="exampleInputEmail1">Email Name</label>
+                        <label htmlFor="exampleInputEmail1">Enter Name</label>
                         <input type="text" required className="form-control" value={this.state.name} aria-describedby="emailHelp" placeholder="Enter Name" onChange={this.handleChange} />
                     </div>
                     <div className="form-group">
